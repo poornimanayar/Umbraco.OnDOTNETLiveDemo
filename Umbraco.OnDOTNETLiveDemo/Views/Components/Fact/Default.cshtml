@@ -1,0 +1,20 @@
+﻿@model FactViewModel
+
+@using (Html.BeginUmbracoForm("CreateFact", "FactSurface", FormMethod.Post, new { @class = "text-left" }))
+{
+     <div class="form-floating">
+        <input asp-for="@Model.FactName" class="form-control" id="factName" placeholder="Enter name"  autocomplete="off" data-sb-validations="required"/>
+        <label for="Email">Fact Name</label>
+    </div>
+
+    <div class="form-floating">
+        <input  asp-for="@Model.FactContent" class="form-control" id="factContent" placeholder="Enter content"  autocomplete="off" data-sb-validations="required" />
+        <label for="Email">Fact Content</label>
+    </div>
+   
+    <div class="form-floating">
+        <button class="btn btn-primary text-uppercase float-end" id="register" type="submit">Create fact!</button>
+    </div>
+
+     @Html.ValidationSummary()
+}

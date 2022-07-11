@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Umbraco.Cms.Core.Security
+@inject IMemberManager memberManager
+@inject IPublishedContentQuery publishedContentQuery
+@inject IHttpContextAccessor httpContextAccessor
+
+@if (memberManager.IsLoggedIn())
+{
+    var currentMember = await memberManager.GetCurrentMemberAsync();
+   
+
+    <li class="nav-item">
+       <span class="nav-link px-lg-3 py-3 py-lg-4">Welcome, @currentMember.Name</span>
+        <a class="nav-link px-lg-3 py-3 py-lg-4" href="@Url.SurfaceAction("Logout","AccountSurface")">Logout</a>
+    </li>
+}
+else
+{
+    var loginPage = @publishedContentQuery.ContentSingleAtXPath("//home/login");
+    <li class="nav-item">
+        <a class="nav-link px-lg-3 py-3 py-lg-4" href="@loginPage?.Url()">@(loginPage?.Name)</a>
+    </li>
+}

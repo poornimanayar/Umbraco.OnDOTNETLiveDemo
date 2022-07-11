@@ -1,0 +1,22 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.SampleDocType>
+@using ContentModels = Umbraco.OnDOTNETLiveDemo.Models;
+@{
+    Layout = "master.cshtml";
+}
+
+@await Html.PartialAsync("~/Views/Partials/pageHeader.cshtml", new PageHeaderViewModel(Model.Name, Model.Title, Model.Subtitle, Model.MainImage))
+@*Access the field values using Model.propertyalias*@
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <p>Text Value : @Model.TextValue</p>
+            <p>More Text Value : @Model.MoreText</p>
+            <p>Radio button Value : @Model.RadioButtonList</p>
+            <p>True/False Value : @Model.TrueOrFalse</p>
+            <p>Slider Value : @Model.Slider</p>
+            <p>Extended values : @Model.ExtendedProperty</p>
+        </div>
+    </div>
+</div>

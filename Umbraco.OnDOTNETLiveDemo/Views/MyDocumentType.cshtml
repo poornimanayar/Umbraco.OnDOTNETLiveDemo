@@ -1,0 +1,24 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<MyDocumentTypeViewModel>
+@{
+    Layout = "master.cshtml";
+}
+
+@await Html.PartialAsync("~/Views/Partials/pageHeader.cshtml", new PageHeaderViewModel(Model.Name, Model.Title, Model.Subtitle, Model.MainImage))
+
+<div class="container">
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <p><strong>Updated on :</strong> @Model.DisplayDate.ToString("dd MMMM yyyy")</p>
+       <p><strong>My Property :</strong> @Model.MyProperty</p>
+       <h3>Articles</h3>
+            @foreach(var article in Model.Articles)
+            {
+                <p>@article.Name</p>
+            }
+        </div>
+</div>
+</div>
+
+<article>
+    @Html.GetGridHtml(Model, "mainContent", "Clean")
+</article>
